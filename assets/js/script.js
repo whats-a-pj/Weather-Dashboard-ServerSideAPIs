@@ -1,0 +1,1 @@
+var openWeatherKey = "2d52ba18533dcbc34d4b78e05f50aa2c";
