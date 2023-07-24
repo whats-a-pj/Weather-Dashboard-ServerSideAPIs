@@ -6,34 +6,51 @@
     <title>Weather Dashboard</title>
     <link rel="stylesheet" href="./assets/css/style.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <script
+    src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+    integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
+    crossorigin="anonymous"></script>
 </head>
 <body>
-    <h1>Bulma.io testing</h1>
-    <div class="column is-narrow">
-        <p>Search Bar test</p>
+    <div class="container is-fullhd"> 
+        <h1 class="py-2 px-2 has-background-primary-dark title">Weather Dashboard</h1>
     </div>
+    <div class="sections">
     <div class="columns">
-        <div class="column">
-            <p class="bd-notification is-info">Current day weather</p>
+        <div class="column is-2 has-background-primary-dark has-text-weight-bold">
+            <p class="section"> Type a city name for a current and five-day weather forecast</p>
+        <input class="input is-primary-light" type="text" placeholder="Text input">
+        <div class="button is-primary">Search</div>
+    </div>
+        <!--div class="input"></div>
+        <div class="button">Search</div-->
+    <div class="column is-10 has-background-primary">
+            <p class="section">Current day weather</p>
+        <div class="columns is-multiline">
+            <div class="column has-background-primary-light">
+                <p id="day1" class="section is-one-fifth"> Day of week, MM/DD/YYYY, span icon; temp, wind, humidity
+                </p>
+            </div>
+            <div class="column has-background-primary-light">
+                <p id="day2" class="section is-one-fifth"> Day of week, MM/DD/YYYY, span icon; temp, wind, humidity
+                </p>
+            </div>
+            <div class="column has-background-primary-light">
+                <p id="day3" class="section is-one-fifth"> Day of week, MM/DD/YYYY, span icon; temp, wind, humidity
+                </p>
+            </div>
+            <div class="column has-background-primary-light">
+                <p id="day4" class="section is-one-fifth"> Day of week, MM/DD/YYYY, span icon; temp, wind, humidity
+                </p>
+            </div>
+            <div class="column has-background-primary-light">
+                <p id="day5" class="section is-one-fifth"> Day of week, MM/DD/YYYY, span icon; temp, wind, humidity
+                </p>
+            </div>
         </div>
-        <div class="columns is-mobile">
-            <div class="column">
-                <p class="bd-notification is-info">First day</p>
-            </div>
-            <div class="column">
-                <p class="bd-notification is-info">Second day</p>
-            </div>
-            <div class="column">
-                <p class="bd-notification is-info">Third day</p>
-            </div>
-            <div class="column">
-                <p class="bd-notification is-info">Fourth day</p>
-            </div>
-            <div class="column">
-                <p class="bd-notification is-info">Fifth day</p>
-            </div>
         </div>
     </div>
+</div>
     <script src="./assets/js/script.js"></script>
 </body>
 </html>
