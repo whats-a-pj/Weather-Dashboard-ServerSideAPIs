@@ -14,20 +14,21 @@
     crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="container is-fullhd"> 
-        <h1 class="py-2 px-2 has-background-primary-dark title">Weather Dashboard</h1>
+    <div class="row"> 
+        <h1 class="title has-background-primary-dark px-3 py-4">Weather Dashboard</h1>
     </div>
-    <div class="sections">
-    <div class="columns">
+<div class="sections">
+<div class="columns">
         <div class="column is-2 has-background-primary-dark has-text-weight-bold">
-            <p class="section"> Type a city name for a current and five-day weather forecast</p>
+            <!--p class="section"> Type a city name for a current and five-day weather forecast</p-->
         <input id="search" class="input is-primary-light" type="text" placeholder="Text input">
         <div id="submit" class="button is-primary">Search</div>
     </div>
         <!--div class="input"></div>
         <div class="button">Search</div-->
     <div class="column is-10 has-background-primary">
-            <p id="current-day" class="section">Today's Weather</p>
+        <!--elements are created here in the js file-->
+            <p id="current-day" class="section"></p>
         <div class="columns is-multiline">
             <div class="column has-background-primary-light">
                 <p id="day1" class="section is-one-fifth"> Day of week, MM/DD/YYYY, span icon; temp, wind, humidity
@@ -50,8 +51,8 @@
                 </p>
             </div>
         </div>
-        </div>
     </div>
+</div>
 </div>
     <script src="./assets/js/script.js"></script>
 </body>
