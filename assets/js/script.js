@@ -8,30 +8,45 @@ var currentDay = dayjs();
 $('#current-day').text(currentDay.format('dddd MM/DD/YYYY'));
 //Creating elements for the current day
 var cityName = document.createElement("div");
-var humidity = document.createElement("div");
-var windSpeed = document.createElement("div");
-var temperature = document.createElement("div");
+//var icon = document.createElement("span");
+var currentHumidity = document.createElement("div");
+var currentWindSpeed = document.createElement("div");
+var currentTemp = document.createElement("div");
+//Assigning variables to already created elements
+// var dayOne = document.getElementById("#day1");
+// var dayTwo = document.getElementById("#day2");
+// var dayThree = document.getElementById("#day3");
+// var dayFour = document.getElementById("#day4");
+// var dayFive = document.getElementById("#day5");
 //Setting attributes for styling to the new elements
 cityName.setAttribute("class", "title");
-temperature.setAttribute("class", "subtitle is-dark");
-windSpeed.setAttribute("class", "subtitle is-dark");
-humidity.setAttribute("class", "subtitle is-dark");
+//icon.setAttribute("class", "icon is-large");
+currentTemp.setAttribute("class", "subtitle is-dark");
+currentWindSpeed.setAttribute("class", "subtitle is-dark");
+currentHumidity.setAttribute("class", "subtitle is-dark");
 //Setting the text content based off of information given via API
 cityName.textContent = weather.name;
-temperature.textContent = "Temp: " + weather.main.temp + " °F";
-windSpeed.textContent = "Wind: " + weather.wind.speed + " MPH";
-humidity.textContent = "Humidity: " + weather.main.humidity + "%";
+//icon = weather.weather[0].icon;
+currentTemp.textContent = "Temp: " + weather.main.temp + " °F";
+currentWindSpeed.textContent = "Wind: " + weather.wind.speed + " MPH";
+currentHumidity.textContent = "Humidity: " + weather.main.humidity + "%";
 //Appending elements to the GUI
 resultsCurrent.append(cityName);
-resultsCurrent.append(temperature);
-resultsCurrent.append(windSpeed);
-resultsCurrent.append(humidity);
+//resultsCurrent.append(icon);
+resultsCurrent.append(currentTemp);
+resultsCurrent.append(currentWindSpeed);
+resultsCurrent.append(currentHumidity);
+
+for (let i = 0; i < currentDay.length; i++) {
+    const fiveDayForecast = array[i];
+
+    
+    }
 };
 
-function getWeather(query) {
+function getWeather(userSearch) {
 var test = "https://api.openweathermap.org/data/2.5/weather?q=London&units=imperial&appid=2d52ba18533dcbc34d4b78e05f50aa2c";
-//var test = "https://api.openweathermap.org/data/2.5/weather?q=" + query + "&units=imperial&appid=2d52ba18533dcbc34d4b78e05f50aa2c";
-
+//var test = "https://api.openweathermap.org/data/2.5/weather?q=" + userSearch + "&units=imperial&appid=2d52ba18533dcbc34d4b78e05f50aa2c";
 //add a variable for query so user can input a city name
 //add eventlistener to search button to run the show weather and get weather funcs
 fetch(test)
@@ -40,6 +55,18 @@ fetch(test)
 };
 
 getWeather();
+
+//todo Here is what I *think* i need to do, and possibly how i can do it!
+/* 
+1. create a for loop inside showWeather function to loop through the data for 6 days;
+the current day and the 5 days following, can i use dayjs to loop through this or 
+does the API call do all of that? docs are a little unclear
+2. create another for loop for userSearch localStorage to save data + create clickable
+list elements based on userSearch
+3. figure out how the geocoding API works, because for some reason replacing London with 
+another city name doesn't create a response
+*/
+
 
 //Selecting the Search button
 //var submitSearch = document.querySelector("#submit");
