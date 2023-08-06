@@ -64,15 +64,38 @@ for (let i = 0; i < data.list.length; i = i + 8) {
     const day = data.list[i];
 //Selecting the elements in the HTML with ids starting with #day and using the same math variables as the for loop above
 var dayEl = document.querySelector("#day" + (i / 8 + 1));
-var fiveDays = dayjs();
-$(dayEl).text(fiveDays.format('dddd MM/DD/YYYY'));
-//todo var dayJSVar = document.createElement("#current-day" + (i / 8 +1));
+var fiveDays = document.querySelector(".dates");
+//var fiveDays = dayjs();
+//$(dayEl).text(fiveDays.format('dddd MM/DD/YYYY'));
+var dayOne = dayjs().add(1, "day").format('dddd MM/DD/YYYY');
+var dayTwo = dayjs().add(2, "day").format('dddd MM/DD/YYYY');
+var dayThree = dayjs().add(3, "day").format('dddd MM/DD/YYYY');
+var dayFour = dayjs().add(4, "day").format('dddd MM/DD/YYYY');
+var dayFive = dayjs().add(5, "day").format('dddd MM/DD/YYYY');
 //Creating elements for the five day forecast
+//This is for dayjs
+var fiveDayOne = document.createElement('div');
+var fiveDayTwo = document.createElement('div');
+var fiveDayThree = document.createElement('div');
+var fiveDayFour = document.createElement('div');
+var fiveDayFive = document.createElement('div');
+
+fiveDayOne.textContent = dayOne;
+fiveDayTwo.textContent = dayTwo;
+fiveDayThree.textContent = dayThree;
+fiveDayFour.textContent = dayFour;
+fiveDayFive.textContent = dayFive;
+fiveDays.append(fiveDayOne);
+fiveDays.append(fiveDayTwo);
+fiveDays.append(fiveDayThree);
+fiveDays.append(fiveDayFour);
+fiveDays.append(fiveDayFive);
+//Creating html for the API Data
 var fiveDayIcon = document.createElement("img");
 var fiveDayTemp = document.createElement("div");
 var fiveDayHumidity = document.createElement("div");
 var fiveDayWindSpeed = document.createElement("div");
-//Setting the content based off the data list
+//Setting the content based off the data list via the API
 fiveDayIcon.setAttribute("src", "https://openweathermap.org/img/wn/" + day.weather[0].icon + "@4x.png");
 fiveDayTemp.textContent = "Temp: " + day.main.temp + " °F";
 fiveDayWindSpeed.textContent = "Wind: " + day.wind.speed + " MPH";
@@ -82,8 +105,7 @@ dayEl.append(fiveDayIcon);
 dayEl.append(fiveDayTemp);
 dayEl.append(fiveDayWindSpeed);
 dayEl.append(fiveDayHumidity);
-}
-});
+}});
 };
 
 //Getting items to store based on user input
@@ -95,19 +117,24 @@ localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
     for (let i = 0; i < searchHistory.length; i++) {
         var listEl = document.querySelector("#recent")
         listEl.textContent = searchHistory[i];
-        var li = document.createElement("li")
-        listEl.appendChild(li);
+        var listButton = document.createElement("button");
+        // listButton.setAttribute("class", "button is-large");
+        // listButton.textContent = searchHistory;
+        listEl.appendChild(listButton);
+        console.log(searchHistory)
+        console.log(userSearch)
 }});
 
 /* ***************************************************************************** */
 //todo make localstorage elements into buttons that are attached to the search function eventlistener
+//todo update so localstorage actually does its damn job
 
 //todo dayjs isnt populating the following 5 days- only showing current date
-// var dayOne = dayjs().add(1, "day");
-// var dayTwo = dayjs().add(2, "day");
-// var dayThree = dayjs().add(3, "day");
-// var dayFour = dayjs().add(4, "day");
-// var dayFive = dayjs().add(5, "day");
+// var dayOne = dayjs().add(1, "day").format('dddd MM/DD/YYYY');
+// var dayTwo = dayjs().add(2, "day").format('dddd MM/DD/YYYY');
+// var dayThree = dayjs().add(3, "day").format('dddd MM/DD/YYYY');
+// var dayFour = dayjs().add(4, "day").format('dddd MM/DD/YYYY');
+// var dayFive = dayjs().add(5, "day").format('dddd MM/DD/YYYY');
 // $(fiveDays).text(dayOne.format('dddd MM/DD/YYYY'));
 // $(fiveDays).text(dayTwo.format('dddd MM/DD/YYYY'));
 // $(fiveDays).text(dayThree.format('dddd MM/DD/YYYY'));
@@ -118,3 +145,8 @@ localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
 // // dayjs().add(3, "day").format("MM-DD-YYYY");
 // // dayjs().add(4, "day").format("MM-DD-YYYY");
 // // dayjs().add(5, "day").format("MM-DD-YYYY");
+// fiveDayOne.querySelector("#day1");
+// fiveDayTwo.querySelector("#day2");
+// fiveDayThree.querySelector("#day3");
+// fiveDayFour.querySelector("#day4");
+// fiveDayFive.querySelector("#day5");
