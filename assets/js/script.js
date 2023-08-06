@@ -101,25 +101,38 @@ localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
         document.querySelector("#recent").appendChild(li);
 }});
 
+/* ***************************************************************************** */
 
+//todo dayjs isnt populating the following 5 days- only showing current date
+// var dayOne = dayjs().add(1, "day");
+// var dayTwo = dayjs().add(2, "day");
+// var dayThree = dayjs().add(3, "day");
+// var dayFour = dayjs().add(4, "day");
+// var dayFive = dayjs().add(5, "day");
+// $(fiveDays).text(dayOne.format('dddd MM/DD/YYYY'));
+// $(fiveDays).text(dayTwo.format('dddd MM/DD/YYYY'));
+// $(fiveDays).text(dayThree.format('dddd MM/DD/YYYY'));
+// $(fiveDays).text(dayFour.format('dddd MM/DD/YYYY'));
+// $(fiveDays).text(dayFive.format('dddd MM/DD/YYYY'));
+// // dayjs().add(1, "day").format("MM-DD-YYYY");
+// // dayjs().add(2, "day").format("MM-DD-YYYY");
+// // dayjs().add(3, "day").format("MM-DD-YYYY");
+// // dayjs().add(4, "day").format("MM-DD-YYYY");
+// // dayjs().add(5, "day").format("MM-DD-YYYY");
 
-//todo Here is a bunch of code I may or may not need or references to already written code
-/* 
-1. create a for loop inside showWeather function to loop through the data for 6 days;
-the current day and the 5 days following, can i use dayjs to loop through this or 
-does the API call do all of that? docs are a little unclear
-2. create another for loop for userSearch localStorage to save data + create clickable
-list elements based on userSearch
-3. figure out how the geocoding API works, because for some reason replacing London with 
-another city name doesn't create a response
-*/
+//todo localStorage isn't appending items to #recent div like it should
+// //Getting items to store based on user input
+// var searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
 
-//Assigning variables to already created elements
-// var dayOne = document.getElementById("#day1");
-// var dayTwo = document.getElementById("#day2");
-// var dayThree = document.getElementById("#day3");
-// var dayFour = document.getElementById("#day4");
-// var dayFive = document.getElementById("#day5");
-
-//Selecting the Search button
-//var submitSearch = document.querySelector("#submit");
+// submitSearch.addEventListener("click", function() {
+//     searchHistory.push(userSearch.value);
+// localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
+// //instead of setting ids here maybe do an innerHTML thing or just hard code in the html with empty space
+// //to help it not duplicate the search history
+//     for (let i = 0; i < searchHistory.length; i++) {
+//         var listEl = document.querySelector("#recent")
+//         listEl.value = searchHistory[i];
+//         var li = document.createElement("li")
+//         listEl.appendChild(li);
+//         console.log(searchHistory)
+// }});
