@@ -95,10 +95,14 @@ localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
 //instead of setting ids here maybe do an innerHTML thing or just hard code in the html with empty space
 //to help it not duplicate the search history
     for (let i = 0; i < searchHistory.length; i++) {
+        // var li = document.createElement("li")
+        // li.textContent = searchHistory[i];
+        // li.setAttribute("id", "#recent");
+        // document.querySelector("#recent").appendChild(li);
+        var listEl = document.querySelector("#recent")
+        listEl.textContent = searchHistory[i];
         var li = document.createElement("li")
-        li.textContent = searchHistory[i];
-        li.setAttribute("id", "#recent");
-        document.querySelector("#recent").appendChild(li);
+        listEl.appendChild(li);
 }});
 
 /* ***************************************************************************** */
