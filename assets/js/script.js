@@ -65,7 +65,7 @@ for (let i = 0; i < data.list.length; i = i + 8) {
 //Selecting the elements in the HTML with ids starting with #day and using the same math variables as the for loop above
 var dayEl = document.querySelector("#day" + (i / 8 + 1));
 var fiveDays = dayjs();
-$('#day').text(fiveDays.format('dddd MM/DD/YYYY'));
+$(dayEl).text(fiveDays.format('dddd MM/DD/YYYY'));
 //todo var dayJSVar = document.createElement("#current-day" + (i / 8 +1));
 //Creating elements for the five day forecast
 var fiveDayIcon = document.createElement("img");
@@ -92,13 +92,7 @@ var searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
 submitSearch.addEventListener("click", function() {
     searchHistory.push(userSearch.value);
 localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
-//instead of setting ids here maybe do an innerHTML thing or just hard code in the html with empty space
-//to help it not duplicate the search history
     for (let i = 0; i < searchHistory.length; i++) {
-        // var li = document.createElement("li")
-        // li.textContent = searchHistory[i];
-        // li.setAttribute("id", "#recent");
-        // document.querySelector("#recent").appendChild(li);
         var listEl = document.querySelector("#recent")
         listEl.textContent = searchHistory[i];
         var li = document.createElement("li")
@@ -106,6 +100,7 @@ localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
 }});
 
 /* ***************************************************************************** */
+//todo make localstorage elements into buttons that are attached to the search function eventlistener
 
 //todo dayjs isnt populating the following 5 days- only showing current date
 // var dayOne = dayjs().add(1, "day");
@@ -123,20 +118,3 @@ localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
 // // dayjs().add(3, "day").format("MM-DD-YYYY");
 // // dayjs().add(4, "day").format("MM-DD-YYYY");
 // // dayjs().add(5, "day").format("MM-DD-YYYY");
-
-//todo localStorage isn't appending items to #recent div like it should
-// //Getting items to store based on user input
-// var searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
-
-// submitSearch.addEventListener("click", function() {
-//     searchHistory.push(userSearch.value);
-// localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
-// //instead of setting ids here maybe do an innerHTML thing or just hard code in the html with empty space
-// //to help it not duplicate the search history
-//     for (let i = 0; i < searchHistory.length; i++) {
-//         var listEl = document.querySelector("#recent")
-//         listEl.value = searchHistory[i];
-//         var li = document.createElement("li")
-//         listEl.appendChild(li);
-//         console.log(searchHistory)
-// }});
