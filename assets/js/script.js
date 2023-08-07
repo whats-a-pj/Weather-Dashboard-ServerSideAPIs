@@ -64,32 +64,32 @@ for (let i = 0; i < data.list.length; i = i + 8) {
     const day = data.list[i];
 //Selecting the elements in the HTML with ids starting with #day and using the same math variables as the for loop above
 var dayEl = document.querySelector("#day" + (i / 8 + 1));
-var fiveDays = document.querySelector(".dates");
-//var fiveDays = dayjs();
-//$(dayEl).text(fiveDays.format('dddd MM/DD/YYYY'));
-var dayOne = dayjs().add(1, "day").format('dddd MM/DD/YYYY');
-var dayTwo = dayjs().add(2, "day").format('dddd MM/DD/YYYY');
-var dayThree = dayjs().add(3, "day").format('dddd MM/DD/YYYY');
-var dayFour = dayjs().add(4, "day").format('dddd MM/DD/YYYY');
-var dayFive = dayjs().add(5, "day").format('dddd MM/DD/YYYY');
-//Creating elements for the five day forecast
-//This is for dayjs
-var fiveDayOne = document.createElement('div');
-var fiveDayTwo = document.createElement('div');
-var fiveDayThree = document.createElement('div');
-var fiveDayFour = document.createElement('div');
-var fiveDayFive = document.createElement('div');
+// var fiveDays = document.querySelector(".dates");
+var fiveDays = dayjs();
+$(dayEl).text(fiveDays.format('dddd MM/DD/YYYY'));
+// var dayOne = dayjs().add(1, "day").format('dddd MM/DD/YYYY');
+// var dayTwo = dayjs().add(2, "day").format('dddd MM/DD/YYYY');
+// var dayThree = dayjs().add(3, "day").format('dddd MM/DD/YYYY');
+// var dayFour = dayjs().add(4, "day").format('dddd MM/DD/YYYY');
+// var dayFive = dayjs().add(5, "day").format('dddd MM/DD/YYYY');
+// //Creating elements for the five day forecast
+// //This is for dayjs
+// var fiveDayOne = document.createElement('div');
+// var fiveDayTwo = document.createElement('div');
+// var fiveDayThree = document.createElement('div');
+// var fiveDayFour = document.createElement('div');
+// var fiveDayFive = document.createElement('div');
 
-fiveDayOne.textContent = dayOne;
-fiveDayTwo.textContent = dayTwo;
-fiveDayThree.textContent = dayThree;
-fiveDayFour.textContent = dayFour;
-fiveDayFive.textContent = dayFive;
-fiveDays.append(fiveDayOne);
-fiveDays.append(fiveDayTwo);
-fiveDays.append(fiveDayThree);
-fiveDays.append(fiveDayFour);
-fiveDays.append(fiveDayFive);
+// fiveDayOne.textContent = dayOne;
+// fiveDayTwo.textContent = dayTwo;
+// fiveDayThree.textContent = dayThree;
+// fiveDayFour.textContent = dayFour;
+// fiveDayFive.textContent = dayFive;
+// fiveDays.append(fiveDayOne);
+// fiveDays.append(fiveDayTwo);
+// fiveDays.append(fiveDayThree);
+// fiveDays.append(fiveDayFour);
+// fiveDays.append(fiveDayFive);
 //Creating html for the API Data
 var fiveDayIcon = document.createElement("img");
 var fiveDayTemp = document.createElement("div");
