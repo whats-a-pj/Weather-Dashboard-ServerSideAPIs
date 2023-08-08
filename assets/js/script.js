@@ -94,19 +94,15 @@ submitSearch.addEventListener("click", function() {
 localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
     for (let i = 0; i < searchHistory.length; i++) {
         var listEl = document.querySelector("#recent")
-        listEl.textContent = searchHistory[i];
-        var listButton = document.createElement("button");
-        // listButton.setAttribute("class", "button is-large");
-        // listButton.textContent = searchHistory;
-        listEl.appendChild(listButton);
-        console.log(searchHistory)
-        console.log(userSearch)
+        //var listButton = document.createElement("button");
+        var recentSearch = document.createElement("p");
+        recentSearch.textContent = searchHistory[i];
+        listEl.append(recentSearch/*, listButton*/);
+        console.log(localStorage);
 }});
 
 /* ***************************************************************************** */
 //todo make localstorage elements into buttons that are attached to the search function eventlistener
-//todo update so localstorage actually does its damn job
-
 //todo dayjs isnt populating the following 5 days- only showing current date
 // var dayOne = dayjs().add(1, "day").format('dddd MM/DD/YYYY');
 // var dayTwo = dayjs().add(2, "day").format('dddd MM/DD/YYYY');
