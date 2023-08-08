@@ -8,15 +8,16 @@ This project helped me "deep-dive" into what it's like to use server-side APIs a
 <details>
 <summary> Link to live site & screenshots </summary>
 
+https://whats-a-pj.github.io/Weather-Dashboard-ServerSideAPIs/
 
 before you search
-![Screenshot of website](assets/images/)
+![Screenshot of website](assets/images/Homepage.png)
 
 after search
-![Screenshot of website](assets/images)
+![Screenshot of website](assets/images/FirstSearch.png)
 
-search again from localstorage elements
-![Screenshot of website](assets/images)
+search again
+![Screenshot of website](assets/images/MultipleSearches.png)
 
 </details>
 
@@ -45,12 +46,20 @@ Copy and pasted README set-up from Web API Code Quiz repo
 
 Started updating the README file to sort of take a short break from debugging my application
 
+Got localStorage to work properly
+
+Updated README & added screenshots
+
 </details>
 
 <details>
 <summary> Credits </summary>
 
 These are the websites I used to help me accomplish this project
+
+https://day.js.org/docs/en/display/calendar-time
+
+https://openweathermap.org/forecast5#name5
 
 https://bulma.io/documentation/columns/sizes/
 
@@ -66,14 +75,12 @@ https://bulma.io/documentation/form/input/
 
 https://bulma.io/documentation/elements/title/
 
-https://day.js.org/docs/en/display/calendar-time
-
-https://openweathermap.org/forecast5#name5
-
 https://www.youtube.com/watch?v=k8yJCeuP6I8
 
 Chose to use bulma to style this assignment so I could get comfortable using it for the group project- since we weren't allowed to use bootstrap
 
 I helped Salvador Mejia with his localStorage and he helped me and Timothy Morgan get our icons to append to the GUI
+
+Jacek Hacking & CJ Sanders (TAs) helped me make sure my appended items were targeting the correct container
 
 </details>
