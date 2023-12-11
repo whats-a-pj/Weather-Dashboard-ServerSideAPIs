@@ -6,6 +6,17 @@
     <title>Weather Dashboard</title>
     <link rel="stylesheet" href="./assets/css/style.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <style>
+        /* Custom CSS to hide the scrollbar */
+        .has-overflow-scroll-y {
+            overflow-y: auto;
+            scrollbar-width: none; /* Firefox */
+        }
+
+        .has-overflow-scroll-y::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+        }
+    </style>
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
     integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
     crossorigin="anonymous"></script>
@@ -14,47 +25,36 @@
     crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="row"> 
+    <div class="row">
         <h1 class="title has-background-primary-dark px-3 py-4">Weather Dashboard</h1>
     </div>
-<div class="sections">
-<div class="columns">
-        <div class="column is-2 has-background-primary-dark has-text-weight-bold">
-            <!--p class="section"> Type a city name for a current and five-day weather forecast</p-->
-        <input id="search" class="input is-primary-light" type="text" placeholder="Text input">
-        <div id="submit" class="button is-primary">Search</div>
-        <div id="recent"></div>
-    </div>
-        <!--div class="input"></div>
-        <div class="button">Search</div-->
-    <div class="column is-10 has-background-primary">
-        <!--elements are created here in the js file-->
-            <p id="current-day" class="section"></p>
-        <div class="columns is-multiline">
-            <div class="column has-background-primary-light">
-                <p class="dates"></p>
-                <p id="day1" class="section is-one-fifth"></p>
+    <div class="sections is-fullheight has-overflow-scroll-y scrollbar-hidden">
+        <div class="columns is-fullheight">
+            <div class="column is-2 has-background-primary-dark has-text-weight-bold is-fullheight">
+                <!-- Search container taking up 1/5th of the vertical space -->
+                <div class="section is-flex is-flex-direction-column is-justify-content-space-between h-full has-overflow-scroll-y scrollbar-hidden">
+                    <div>
+                        <input id="search" class="input is-primary-light mb-2" type="text" placeholder="Type a city name...">
+                        <div id="submit" class="button is-primary is-fullwidth">Search</div>
+                        <div id="recent" class="has-invisible-scrollbar"></div>
+                    </div>
+                </div>
             </div>
-            <div class="column has-background-primary-light">
-                <p class="dates"></p>
-                <p id="day2" class="section is-one-fifth"></p>
-            </div>
-            <div class="column has-background-primary-light">
-                <p class="dates"></p>
-                <p id="day3" class="section is-one-fifth"></p>
-            </div>
-            <div class="column has-background-primary-light">
-                <p class="dates"></p>
-                <p id="day4" class="section is-one-fifth"></p>
-            </div>
-            <div class="column has-background-primary-light">
-                <p class="dates"></p>
-                <p id="day5" class="section is-one-fifth"></p>
+            <div class="column is-10 has-background-primary">
+                <!-- Elements for weather data -->
+                <div class="section is-fullheight">
+                    <p id="current-day" class="section"></p>
+                    <div class="columns is-multiline has-background-primary-light">
+                        <!-- Placeholder for day-wise forecast -->
+                        <div class="column is-3" id="day1"></div>
+                        <div class="column is-3" id="day2"></div>
+                        <div class="column is-3" id="day3"></div>
+                        <div class="column is-3" id="day4"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
-</div>
     <script src="./assets/js/script.js"></script>
 </body>
 </html>

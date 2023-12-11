@@ -54,55 +54,95 @@ fetch(forecastURL)
 submitSearch.addEventListener("click", getWeather);
 
 function fiveDayForecast() {
-    var test = "https://api.openweathermap.org/data/2.5/forecast?q=" + userSearch.value + "&units=imperial&appid=2d52ba18533dcbc34d4b78e05f50aa2c";
+    var test =
+      "https://api.openweathermap.org/data/2.5/forecast?q=" +
+      userSearch.value +
+      "&units=imperial&appid=2d52ba18533dcbc34d4b78e05f50aa2c";
     fetch(test)
-    .then((response) => response.json())
-    .then((data) => {
-        for (let i = 0; i < data.list.length; i = i + 8) {
-            const day = data.list[i];
-            var dayEl = document.querySelector("#day" + (i / 8 + 1));
+      .then((response) => response.json())
+      .then((data) => {
+        for (let i = 1; i <= 4; i++) {
+          // Calculate the index to get the right forecasted day from the data list
+          const dayIndex = i * 8 - 1;
+          const day = data.list[dayIndex];
+          var dayEl = document.querySelector("#day" + i);
+  
+          // Calculate date for each day in the forecast starting from tomorrow
+          var fiveDays = dayjs().add(i, "day");
+          var dateDiv = document.createElement("div");
+          dateDiv.textContent = fiveDays.format("dddd MM/DD/YYYY");
 
-            // Calculate date for each day in the forecast
-            var fiveDays = dayjs().add(i / 8, 'day');
-            $(dayEl).text(fiveDays.format('dddd MM/DD/YYYY'));
-
-//Creating html for the API Data
-var fiveDayIcon = document.createElement("img");
-var fiveDayTemp = document.createElement("div");
-var fiveDayHumidity = document.createElement("div");
-var fiveDayWindSpeed = document.createElement("div");
-//Setting the content based off the data list via the API
-fiveDayIcon.setAttribute("src", "https://openweathermap.org/img/wn/" + day.weather[0].icon + "@4x.png");
-fiveDayTemp.textContent = "Temp: " + day.main.temp + " °F";
-fiveDayWindSpeed.textContent = "Wind: " + day.wind.speed + " MPH";
-fiveDayHumidity.textContent = "Humidity: " + day.main.humidity + "%";
-//Adding elements to the GUI
-dayEl.append(fiveDayIcon);
-dayEl.append(fiveDayTemp);
-dayEl.append(fiveDayWindSpeed);
-dayEl.append(fiveDayHumidity);
-}});
-};
+  
+          // Creating html for the API Data
+          var fiveDayIcon = document.createElement("img");
+          var fiveDayTemp = document.createElement("div");
+          var fiveDayHumidity = document.createElement("div");
+          var fiveDayWindSpeed = document.createElement("div");
+          // Setting the content based on the data list via the API
+          fiveDayIcon.setAttribute(
+            "src",
+            "https://openweathermap.org/img/wn/" +
+              day.weather[0].icon +
+              "@4x.png"
+          );
+          fiveDayTemp.textContent = "Temp: " + day.main.temp + " °F";
+          fiveDayWindSpeed.textContent = "Wind: " + day.wind.speed + " MPH";
+          fiveDayHumidity.textContent = "Humidity: " + day.main.humidity + "%";
+          // Adding elements to the GUI
+          dayEl.innerHTML = "";
+          dayEl.appendChild(dateDiv);
+          dayEl.append(fiveDayIcon);
+          dayEl.append(fiveDayTemp);
+          dayEl.append(fiveDayWindSpeed);
+          dayEl.append(fiveDayHumidity);
+        }
+      });
+  }
+  
+  
+  
 
 //Getting items to store based on user input
 var searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
 
+// Function to show weather for a given city
+function showWeatherForCity(city) {
+    var forecastURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=2d52ba18533dcbc34d4b78e05f50aa2c";
+    fetch(forecastURL)
+    .then((response) => response.json())
+    .then((data) => showWeather(data));
+}
+
 submitSearch.addEventListener("click", function() {
-    var searchValue = userSearch.value.trim(); // Trim whitespace from search query
+    var searchValue = userSearch.value.trim();
 
     if (searchValue && !searchHistory.includes(searchValue)) {
-        // If search query is not empty and not already in search history, add it
         searchHistory.push(searchValue);
         localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
 
-        // Update the displayed search history list
         var listEl = document.querySelector("#recent");
-        var recentSearch = document.createElement("p");
+        var recentSearch = document.createElement("button"); // Create button element
         recentSearch.textContent = searchValue;
+        recentSearch.classList.add("button", "is-primary", "mt-3", "has-text-weight-bold");
         listEl.append(recentSearch);
 
-        console.log(localStorage);
+        recentSearch.addEventListener("click", function() {
+            showWeatherForCity(searchValue); // Show weather for the clicked city
+        });
     }
+});
+
+// Populate search history buttons on page load
+searchHistory.forEach(function(city) {
+    var listEl = document.querySelector("#recent");
+    var recentSearch = document.createElement("button");
+    recentSearch.textContent = city;
+    recentSearch.classList.add("button", "is-primary", "m-3", "has-text-weight-bold");
+    listEl.append(recentSearch);
+
+    recentSearch.addEventListener("click", function() {
+        showWeatherForCity(city); // Show weather for the clicked city
+    });
 });
 
 /* ***************************************************************************** */
