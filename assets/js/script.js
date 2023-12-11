@@ -56,17 +56,15 @@ submitSearch.addEventListener("click", getWeather);
 function fiveDayForecast() {
     var test = "https://api.openweathermap.org/data/2.5/forecast?q=" + userSearch.value + "&units=imperial&appid=2d52ba18533dcbc34d4b78e05f50aa2c";
     fetch(test)
-.then((response) => response.json())
-.then((data) => {
-//for loop that will run through the data 5 times for the other 5 days (not including the current days forecast)
-// +8 because there are 40 objects in the data list
-for (let i = 0; i < data.list.length; i = i + 8) {
-    const day = data.list[i];
-//Selecting the elements in the HTML with ids starting with #day and using the same math variables as the for loop above
-var dayEl = document.querySelector("#day" + (i / 8 + 1));
+    .then((response) => response.json())
+    .then((data) => {
+        for (let i = 0; i < data.list.length; i = i + 8) {
+            const day = data.list[i];
+            var dayEl = document.querySelector("#day" + (i / 8 + 1));
 
-var fiveDays = dayjs();
-$(dayEl).text(fiveDays.format('dddd MM/DD/YYYY'));
+            // Calculate date for each day in the forecast
+            var fiveDays = dayjs().add(i / 8, 'day');
+            $(dayEl).text(fiveDays.format('dddd MM/DD/YYYY'));
 
 //Creating html for the API Data
 var fiveDayIcon = document.createElement("img");
@@ -90,16 +88,22 @@ dayEl.append(fiveDayHumidity);
 var searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
 
 submitSearch.addEventListener("click", function() {
-    searchHistory.push(userSearch.value);
-localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
-    for (let i = 0; i < searchHistory.length; i++) {
-        var listEl = document.querySelector("#recent")
-        //var listButton = document.createElement("button");
+    var searchValue = userSearch.value.trim(); // Trim whitespace from search query
+
+    if (searchValue && !searchHistory.includes(searchValue)) {
+        // If search query is not empty and not already in search history, add it
+        searchHistory.push(searchValue);
+        localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
+
+        // Update the displayed search history list
+        var listEl = document.querySelector("#recent");
         var recentSearch = document.createElement("p");
-        recentSearch.textContent = searchHistory[i];
-        listEl.append(recentSearch/*, listButton*/);
+        recentSearch.textContent = searchValue;
+        listEl.append(recentSearch);
+
         console.log(localStorage);
-}});
+    }
+});
 
 /* ***************************************************************************** */
 //todo make localstorage elements into buttons that are attached to the search function eventlistener
